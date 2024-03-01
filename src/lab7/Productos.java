@@ -1,5 +1,7 @@
 package lab7;
 
+import javax.swing.JOptionPane;
+
 public class Productos {
 
     public int id, categoria, pasillo, bin;
@@ -12,10 +14,10 @@ public class Productos {
     public Productos(int id, String nombrep, int categoria, double precio, int pasillo, int bin) {
         this.id = id;
         this.nombrep = nombrep;
-        this.categoria = categoria;
+        setCategoria(categoria);
         this.precio = precio;
-        this.pasillo = pasillo;
-        this.bin = bin;
+        setPasillo(pasillo);
+        setBin(bin);
 
     }
 
@@ -48,15 +50,27 @@ public class Productos {
     }
 
     public void setCategoria(int categoria) {
-        this.categoria = categoria;
+        if (categoria >= 0 && categoria <= 9) {
+            this.categoria = categoria;
+        } else {
+            JOptionPane.showInputDialog("El numero debe ser mayor que 0 y menor que 9");
+        }
     }
 
     public void setPasillo(int pasillo) {
-        this.pasillo = pasillo;
+        if (pasillo >= 100 && pasillo <= 999) {
+            this.pasillo = pasillo;
+        } else {
+            JOptionPane.showInputDialog("El numero debe ser de 3 digitos");
+        }
     }
 
     public void setBin(int bin) {
-        this.bin = bin;
+        if (bin >= 100 && bin <= 999) {
+            this.bin = bin;
+        } else {
+            JOptionPane.showInputDialog("El numero debe ser de 3 digitos");
+        }
     }
 
     public void setNombrep(String nombrep) {
@@ -69,7 +83,7 @@ public class Productos {
 
     @Override
     public String toString() {
-        return "Productos{" + "id=" + id + ", categoria=" + categoria + ", pasillo=" + pasillo + ", bin=" + bin + ", nombrep=" + nombrep + ", precio=" + precio + '}';
+        return "Productos:" + "Id: " + id + "Nombre Producto: " + nombrep + "Precio: " + precio + "Categoria: " + categoria + "Pasillo:" + pasillo + "Bin: " + bin;
     }
 
 }
