@@ -1,5 +1,6 @@
 package lab7;
 
+import javax.swing.JOptionPane;
 
 public class Supermercado extends javax.swing.JFrame {
 
@@ -161,6 +162,11 @@ public class Supermercado extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ayuda");
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
 
         jMenuItem6.setText("Estructura de los Productos");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -204,13 +210,26 @@ public class Supermercado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+
+    }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Id es un Entero.  \n"
+                + "Nombre del Producto: representado por una cadena, es posible que el nombre del producto tenga espacios.  \n"
+                + "Categoria: Puede tener los valores enteros del 0 al 9.  \n"
+                + "Precio: representado por un número real con dos posiciones decimales.  \n"
+                + "Pasillo: se representa con un número entero de 3 posiciones.  \n"
+                + "Bin: indica el lugar del pasillo donde se encuentra el producti.", "Estructura de producto", 1);
+
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        JOptionPane.showMessageDialog(this, "Para cargar la tabla: ./load data.txt\n"
+                + "Para la creación de archivos: ./create archivo.txt -single\n"
+                + "Para limpiar la tabla: ./clear\n"
+                + "Para cargar los árboles: ./refresh\n", "Instrucciones Comandos.", 1);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
