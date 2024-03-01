@@ -1,7 +1,11 @@
 package lab7;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -226,14 +230,21 @@ public class Supermercado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        String n = JOptionPane.showInputDialog("Deme el nombre del archivo: ");
+        String nn = "./" + n + ".txt";
+        try {
+            nuevoCSV(nn);
+        } catch (IOException ex) {
+            Logger.getLogger(Supermercado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("CSVs");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         RefrescarArbol();
-        
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
@@ -270,7 +281,7 @@ public class Supermercado extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-      
+
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     /**
@@ -361,6 +372,31 @@ public class Supermercado extends javax.swing.JFrame {
             }
         }
         modelo.reload();
+    }
+
+    public void nuevoCSV(String n) throws IOException {
+        if (tabla.getRowCount() >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            AdminP x = new AdminP(n);
+            x.cargarArchivo();
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                if (modelo.getValueAt(i, 0) != null) {
+                    Productos nuevo = new Productos(((Integer) modelo.getValueAt(i, 0)),
+                            ((String) modelo.getValueAt(i, 1)),
+                            ((Integer) modelo.getValueAt(i, 2)),
+                            ((Double) modelo.getValueAt(i, 3)),
+                            ((Integer) modelo.getValueAt(i, 4)),
+                            ((Integer) modelo.getValueAt(i, 5)));
+
+                    x.getListaP().add(nuevo);
+                }
+
+            }
+            x.escribirArchivoTexto();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay datos para guardar.");
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

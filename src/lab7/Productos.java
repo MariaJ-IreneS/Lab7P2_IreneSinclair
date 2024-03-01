@@ -53,7 +53,7 @@ public class Productos {
         if (categoria >= 0 && categoria <= 9) {
             this.categoria = categoria;
         } else {
-            JOptionPane.showInputDialog("El numero debe ser mayor que 0 y menor que 9");
+            JOptionPane.showMessageDialog(null, "El numero debe ser mayor que 0 y menor que 9");
         }
     }
 
@@ -61,7 +61,7 @@ public class Productos {
         if (pasillo >= 100 && pasillo <= 999) {
             this.pasillo = pasillo;
         } else {
-            JOptionPane.showInputDialog("El numero debe ser de 3 digitos");
+            JOptionPane.showMessageDialog(null, "El numero debe ser de 3 digitos");
         }
     }
 
@@ -69,7 +69,7 @@ public class Productos {
         if (bin >= 100 && bin <= 999) {
             this.bin = bin;
         } else {
-            JOptionPane.showInputDialog("El numero debe ser de 3 digitos");
+            JOptionPane.showMessageDialog(null, "El numero debe ser de 3 digitos");
         }
     }
 

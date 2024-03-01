@@ -66,9 +66,8 @@ public class AdminP {
     }
 
     public void cargarArchivo() {
-        if (!p.exists()) {
-            JOptionPane.showMessageDialog(null, "No existe ese archivo, no puede ser cargado.");
-        } else {
+        listaP = new ArrayList();
+        if (p.exists()) {
             try {
                 FileReader fileReader = new FileReader(p);
                 BufferedReader bufferedReader = new BufferedReader(fileReader);

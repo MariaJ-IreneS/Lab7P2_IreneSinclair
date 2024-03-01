@@ -1,0 +1,2 @@
+Id,Nombre,Categoria,Precio,Pasillo,Bin
+765,fresco,7,89.23,565,345
