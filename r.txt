@@ -1,2 +1,2 @@
 Id,Nombre,Categoria,Precio,Pasillo,Bin
-7353,helado,5,34.34,745,345
+87634,refresco,8,78.34,873,345

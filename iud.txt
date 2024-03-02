@@ -1,2 +1,2 @@
 Id,Nombre,Categoria,Precio,Pasillo,Bin
-7353,helado,5,34.34,745,345
+7385,paleta,5,34.56,763,456

@@ -2,6 +2,7 @@ package lab7;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -27,13 +28,19 @@ public class Supermercado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pp_tabla = new javax.swing.JPopupMenu();
+        limpiat = new javax.swing.JMenuItem();
+        pp_arbol = new javax.swing.JPopupMenu();
+        ListarContenido = new javax.swing.JMenuItem();
+        Refrescar = new javax.swing.JMenuItem();
         fondo = new javax.swing.JPanel();
         comandos = new javax.swing.JTextField();
-        bt_enter = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivo = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -47,18 +54,42 @@ public class Supermercado extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
 
+        limpiat.setText("Limpiar Tablar");
+        limpiat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limpiatActionPerformed(evt);
+            }
+        });
+        pp_tabla.add(limpiat);
+
+        ListarContenido.setText("Listar el Contenido");
+        ListarContenido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarContenidoActionPerformed(evt);
+            }
+        });
+        pp_arbol.add(ListarContenido);
+
+        Refrescar.setText("Refrescar el Arbol");
+        Refrescar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefrescarActionPerformed(evt);
+            }
+        });
+        pp_arbol.add(Refrescar);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Lab7_IreneM");
 
         fondo.setBackground(new java.awt.Color(204, 255, 204));
 
-        bt_enter.setBackground(new java.awt.Color(51, 102, 0));
-        bt_enter.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        bt_enter.setForeground(new java.awt.Color(255, 255, 255));
-        bt_enter.setText("E N T E R");
-
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("CSVs");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbolMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(arbol);
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,7 +129,30 @@ public class Supermercado extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabla);
+
+        jPanel1.setBackground(new java.awt.Color(51, 153, 0));
+
+        jButton1.setBackground(new java.awt.Color(51, 153, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("E N T E R");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
@@ -106,15 +160,15 @@ public class Supermercado extends javax.swing.JFrame {
             fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fondoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
+                        .addComponent(comandos, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(fondoLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2))
-                    .addGroup(fondoLayout.createSequentialGroup()
-                        .addComponent(comandos, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53)
-                        .addComponent(bt_enter, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         fondoLayout.setVerticalGroup(
@@ -122,12 +176,12 @@ public class Supermercado extends javax.swing.JFrame {
             .addGroup(fondoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bt_enter, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(comandos))
-                .addGap(18, 18, 18)
+                    .addComponent(comandos)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -142,6 +196,11 @@ public class Supermercado extends javax.swing.JFrame {
         archivo.add(jMenuItem1);
 
         jMenuItem2.setText("Impotar CVS");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         archivo.add(jMenuItem2);
 
         jMenuBar1.add(archivo);
@@ -284,6 +343,43 @@ public class Supermercado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenu2ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        String archivo = JOptionPane.showInputDialog("Ingrese el nombre del archivo(añade la extension .txt)");
+        importarCSV(archivo);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void RefrescarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefrescarActionPerformed
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("CSVs");
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        RefrescarArbol();
+    }//GEN-LAST:event_RefrescarActionPerformed
+
+    private void limpiatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limpiatActionPerformed
+        limpiarTabla();
+    }//GEN-LAST:event_limpiatActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        if (evt.getButton() == 3) {
+            pp_tabla.show(tabla, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_tablaMouseClicked
+
+    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
+        if (evt.getButton() == 3) {
+            pp_arbol.show(arbol, evt.getX(), evt.getY());
+        }
+    }//GEN-LAST:event_arbolMouseClicked
+
+    private void ListarContenidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarContenidoActionPerformed
+        Object o = arbol.getSelectionPath().getLastPathComponent();
+        if (o != null) {
+            String nombrea = o.toString();
+            importarCSV(nombrea);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo.");
+        }
+    }//GEN-LAST:event_ListarContenidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -399,12 +495,43 @@ public class Supermercado extends javax.swing.JFrame {
         }
     }
 
+    public void importarCSV(String a) {
+        AdminP adm = new AdminP("./" + a);
+        adm.cargarArchivo();
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Id", "Nombre", "Categoria", "Precio", "Pasillo", "Bin"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        ArrayList<Productos> produc = adm.getListaP();
+
+        for (Productos p : produc) {
+
+            Object[] fila = {p.getId(), p.getNombrep(), p.getCategoria(), p.getPrecio(), p.getPasillo(), p.getBin()};
+            modelo.addRow(fila);
+
+        }
+        tabla.setModel(modelo);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ListarContenido;
+    private javax.swing.JMenuItem Refrescar;
     private javax.swing.JTree arbol;
     private javax.swing.JMenu archivo;
-    private javax.swing.JButton bt_enter;
     private javax.swing.JTextField comandos;
     private javax.swing.JPanel fondo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -416,8 +543,12 @@ public class Supermercado extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JMenuItem limpiat;
+    private javax.swing.JPopupMenu pp_arbol;
+    private javax.swing.JPopupMenu pp_tabla;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

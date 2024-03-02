@@ -1,0 +1,3 @@
+Id,Nombre,Categoria,Precio,Pasillo,Bin
+8934,refresco,8,23.02,753,345
+2345,galletas,2,13.5,826,563
