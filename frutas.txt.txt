@@ -1,0 +1,4 @@
+Id,Nombre,Categoria,Precio,Pasillo,Bin
+73573,bananos,2,2.6,734,534
+46534,uvas,2,45.89,473,563
+63545,manzanas,2,22.45,537,424

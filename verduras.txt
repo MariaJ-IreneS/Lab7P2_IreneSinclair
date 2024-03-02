@@ -1,0 +1,2 @@
+Id,Nombre,Categoria,Precio,Pasillo,Bin
+2753,minimos,2,2.5,635,453

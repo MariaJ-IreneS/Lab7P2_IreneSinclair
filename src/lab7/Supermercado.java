@@ -40,7 +40,7 @@ public class Supermercado extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bt_enter = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         archivo = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -138,20 +138,25 @@ public class Supermercado extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 0));
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("E N T E R");
+        bt_enter.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        bt_enter.setForeground(new java.awt.Color(255, 255, 255));
+        bt_enter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bt_enter.setText("E N T E R ");
+        bt_enter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_enterMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+            .addComponent(bt_enter, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(bt_enter, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
@@ -321,8 +326,8 @@ public class Supermercado extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        JOptionPane.showMessageDialog(this, "Para cargar la tabla: ./load data.txt\n"
-                + "Para la creación de archivos: ./create archivo.txt -single\n"
+        JOptionPane.showMessageDialog(this, "Para cargar la tabla: ./load f.txt\n"
+                + "Para la creación de archivos: ./create marzo1.txt -single\n"
                 + "Para limpiar la tabla: ./clear\n"
                 + "Para cargar los árboles: ./refresh\n", "Instrucciones Comandos.", 1);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -379,6 +384,36 @@ public class Supermercado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo.");
         }
     }//GEN-LAST:event_ListarContenidoActionPerformed
+
+    private void bt_enterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_enterMouseClicked
+        String y = comandos.getText();
+        String[] tokens = y.split(" ");
+        if (tokens[0].equals("./load")) {
+            String nombre = tokens[1];
+            importarCSV(nombre);
+        } else if (tokens[0].equals("./create")) {
+            String nombre = tokens[1];
+            String single = tokens[2];
+            if (single != null) {
+                String nn = "./" + nombre;
+                try {
+                    nuevoCSV(nn);
+                } catch (IOException ex) {
+                    Logger.getLogger(Supermercado.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Recuerda colocarle el -single");
+            }
+
+        } else if (tokens[0].equals("./clear")) {
+            limpiarTabla();
+        } else if (tokens[0].equals("./refresh")) {
+            RefrescarArbol();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se reconoce ningun comando.");
+        }
+
+    }//GEN-LAST:event_bt_enterMouseClicked
 
     /**
      * @param args the command line arguments
@@ -489,6 +524,7 @@ public class Supermercado extends javax.swing.JFrame {
 
             }
             x.escribirArchivoTexto();
+            JOptionPane.showMessageDialog(this, "Archivo creado con exito.");
 
         } else {
             JOptionPane.showMessageDialog(this, "No hay datos para guardar.");
@@ -529,9 +565,9 @@ public class Supermercado extends javax.swing.JFrame {
     private javax.swing.JMenuItem Refrescar;
     private javax.swing.JTree arbol;
     private javax.swing.JMenu archivo;
+    private javax.swing.JLabel bt_enter;
     private javax.swing.JTextField comandos;
     private javax.swing.JPanel fondo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
